@@ -8,7 +8,7 @@ You need to perform several commands.
 
     git clone https://github.com/KordianD/robot
 
-    cd robot
+    cd robot/src
 
     python app.py
     
