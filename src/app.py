@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import src.robot as robot
+import robot as robot
 
 APP = Flask(__name__)
 
