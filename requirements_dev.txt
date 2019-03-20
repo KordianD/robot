@@ -1,3 +1,5 @@
+flask
+pybluez
 pytest
 pytest-cov
 flake8
