@@ -1,13 +1,25 @@
 from flask import Flask, render_template, request
+import src.robot as robot
 
 APP = Flask(__name__)
 
+
 @APP.route('/control_robot')
 def control_robot():
-	dir = request.args.get('dir', 0)
-	mousedown = request.args.get('mousedown', 0)
-	print("direction is %, mouse up/down %", dir, mousedown) # debug print
-	return "nothing"
+    direction = request.args.get('direction', 0)
+    mousedown = request.args.get('mousedown', 0)
+    if (mousedown == '1'):
+        print(direction)
+        if (direction == 'up'):
+            robot.forward()
+        elif (direction == 'left'):
+            robot.left()
+        elif (direction == 'right'):
+            robot.right()
+    else:
+        robot.stop()
+    return "nothing"
+
 
 @APP.route("/")
 def hello():

@@ -53,7 +53,7 @@
           <div class="row mt-5">
             <div class="col align-self-start col-lg-4"></div>
             <div class="col align-self-center col-lg-4">
-              <button type="button" class="btn btn-primary btn-lg" id="button_up" style="width:100%;">
+              <button type="button" class="btn btn-primary btn-lg" id="up" style="width:100%;">
                 &#8593;
               </button>
             </div>
@@ -61,13 +61,13 @@
           </div>
           <div class="row mt-1">
             <div class="col align-self-start">
-              <button type="button" class="btn btn-primary btn-lg" id="button_left" style="width:100%;">
+              <button type="button" class="btn btn-primary btn-lg" id="left" style="width:100%;">
                 &#8592;
               </button>
             </div>
             <div class="col align-self-center"></div>
             <div class="col align-self-end">
-              <button type="button" class="btn btn-primary btn-lg" id="button_right" style="width:100%;">
+              <button type="button" class="btn btn-primary btn-lg" id="right" style="width:100%;">
                 &#8594;
               </button>
             </div>
@@ -75,7 +75,7 @@
           <div class="row mt-1">
             <div class="col align-self-start"></div>
             <div class="col align-self-center">
-              <button type="button" class="btn btn-primary btn-lg" id="button_down" style="width:100%;"  >
+              <button type="button" class="btn btn-primary btn-lg" id="down" style="width:100%;"  >
                 &#8595;
               </button>
             </div>
@@ -94,8 +94,8 @@
 <script type="text/javascript">
   $(function() {
     $(':button').bind('touchstart mousedown', function() {
-      $.getJSON('/control_robot ', {
-        dir: $(this).attr('id'),
+      $.getJSON('/control_robot', {
+        direction: $(this).attr('id'),
         mousedown: 1
       }, function(data) {
       } );
@@ -103,9 +103,10 @@
     });
   });
   $(function() {
-    $(':button').bind('touchend mouseup', function() {
-      $.getJSON('/control_robot ', {
-        dir: $(this).attr('id'),
+    $(':button').bind('touchend mouseup', 
+      function() {
+      $.getJSON('/control_robot', {
+        direction: $(this).attr('id'),
         mousedown: 0
       }, function(data) {
       } );
