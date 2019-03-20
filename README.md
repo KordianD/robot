@@ -1,14 +1,21 @@
 
-# robot controller
+# Robot controller
 Simple web server to control a robot. 
+
+# Prerequisites
+To install everything what is needed, run following command in the main directory.
+    
+    git clone https://github.com/KordianD/robot
+    
+    cd robot
+        
+    pip install -r requirements.txt
 
 
 # How to run
 You need to perform several commands.
 
-    git clone https://github.com/KordianD/robot
-
-    cd robot/src
+    cd src
 
     python app.py
     
