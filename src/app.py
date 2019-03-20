@@ -9,13 +9,15 @@ def control_robot():
     direction = request.args.get('direction', 0)
     mousedown = request.args.get('mousedown', 0)
     if (mousedown == '1'):
-        print(direction)
+        print('button pressed:', direction)
         if (direction == 'up'):
             robot.forward()
         elif (direction == 'left'):
             robot.left()
         elif (direction == 'right'):
             robot.right()
+        else:
+            robot.stop()
     else:
         robot.stop()
     return "nothing"
