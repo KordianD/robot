@@ -2,12 +2,14 @@ from flask import Flask, render_template, request
 
 APP = Flask(__name__)
 
+
 @APP.route('/control_robot')
 def control_robot():
-	dir = request.args.get('dir', 0)
-	mousedown = request.args.get('mousedown', 0)
-	print("direction is %, mouse up/down %", dir, mousedown) # debug print
-	return "nothing"
+    dir = request.args.get('dir', 0)
+    mousedown = request.args.get('mousedown', 0)
+    print("direction is %, mouse up/down %", dir, mousedown)  # debug print
+    return "nothing"
+
 
 @APP.route("/")
 def hello():
