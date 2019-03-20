@@ -1,26 +1,21 @@
-def sendSpeedCommand(left, right):
+def send_speed_command(left, right):
     cmd = '[={},{}]'.format(left, right)
     # TODO: send over serial bluetooth (rfcomm)
     print(cmd)
     #
-    return
 
 
 def forward():
-    sendSpeedCommand(40, 40)
-    return
+    send_speed_command(40, 40)
 
 
 def left():
-    sendSpeedCommand(10, 30)
-    return
+    send_speed_command(10, 30)
 
 
 def right():
-    sendSpeedCommand(30, 10)
-    return
+    send_speed_command(30, 10)
 
 
 def stop():
-    sendSpeedCommand(0, 0)
-    return
+    send_speed_command(0, 0)
