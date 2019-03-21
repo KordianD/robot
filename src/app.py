@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import src.robot as robot
+import robot as robot
 
 APP = Flask(__name__)
 
@@ -8,13 +8,14 @@ APP = Flask(__name__)
 def control_robot():
     direction = request.args.get('direction', 0)
     mousedown = request.args.get('mousedown', 0)
-    if (mousedown == '1'):
+    if mousedown == '1':
         print('button pressed:', direction)
-        if (direction == 'up'):
+
+        if direction == 'up':
             robot.forward()
-        elif (direction == 'left'):
+        elif direction == 'left':
             robot.left()
-        elif (direction == 'right'):
+        elif direction == 'right':
             robot.right()
         else:
             robot.stop()
