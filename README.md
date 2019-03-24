@@ -1,6 +1,7 @@
 
 # Robot controller
-Simple web server to control a robot. 
+Simple web server to control a robot.  
+Detailed explanation in project Wiki.
 
 # Prerequisites
 To install everything what is needed, run following command in the main directory.
