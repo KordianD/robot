@@ -1,21 +1,28 @@
-def send_speed_command(left, right):
-    cmd = '[={},{}]'.format(left, right)
-    # TODO: send over serial bluetooth (rfcomm)
-    print(cmd)
-    #
+import socket
 
 
-def forward():
-    send_speed_command(40, 40)
+class Robot:
 
+    def __init__(self):
+        self.socket = socket.socket(
+            socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 
-def left():
-    send_speed_command(10, 30)
+    def send_speed_command(self, left, right):
+        cmd = '[={},{}]'.format(left, right)
+        #self.socket.send(bytes(cmd, 'UTF-8'))
+        print(cmd)
 
+    def forward(self):
+        self.send_speed_command(400, 400)
 
-def right():
-    send_speed_command(30, 10)
+    def reverse(self):
+        self.send_speed_command(-400, -400)
 
+    def left(self):
+        self.send_speed_command(0, 100)
 
-def stop():
-    send_speed_command(0, 0)
+    def right(self):
+        self.send_speed_command(100, 0)
+
+    def stop(self):
+        self.send_speed_command(0, 0)

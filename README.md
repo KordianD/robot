@@ -1,3 +1,8 @@
+# TODO
+- pobieranie portu i wieku
+- zaserwować jako grę z javy
+- timeout rozkazów dla robota (200 ms, requesty co 100 ms)
+
 
 # Robot controller
 Simple web server to control a robot.  
