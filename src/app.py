@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
 import robot as robot
-import socket
 import argparse
 
 parser = argparse.ArgumentParser(description='Robot server.')
@@ -14,7 +13,6 @@ APP = Flask(__name__)
 CORS(APP)
 
 robot = robot.Robot()
-#robot.socket.connect((args.mac, 1))
 
 
 @APP.route('/control_robot')
@@ -43,7 +41,7 @@ def test():
 
 
 @APP.route("/")
-def hello():
+def index():
     return render_template('index.html')
 
 
