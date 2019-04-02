@@ -1,5 +1,5 @@
 flask
-pybluez
+flask-cors
 pytest
 pytest-cov
 flake8
