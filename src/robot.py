@@ -9,6 +9,7 @@ class Robot:
 
     def send_speed_command(self, left, right):
         cmd = '[={},{}]'.format(left, right)
+        self.socket.send(bytes(cmd, 'UTF-8'))
         print(cmd)
 
     def forward(self):
