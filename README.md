@@ -1,9 +1,3 @@
-# TODO
-- pobieranie portu i wieku
-- zaserwować jako grę z javy
-- timeout rozkazów dla robota (200 ms, requesty co 100 ms)
-
-
 # Robot controller
 Simple web server to control a robot.  
 Detailed explanation in project Wiki.
@@ -19,11 +13,18 @@ To install everything what is needed, run following command in the main director
 
 
 # How to run
-You need to perform several commands.
+## Run the robot control server:
+Run commands:
 
     cd src
 
     python app.py
+
+## Add robot task to infun server:
+Add "robot" folder to 
+
+    server/src/main/resources/tasks/
+
     
 # General 
 
