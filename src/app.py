@@ -7,6 +7,7 @@ import time
 
 global ts, robot
 
+#TODO: wiele robotów, losowanie numerka, kolor robota, wywalić serwer jak coś nie działa
 
 def check_robot(interval):
     Timer(interval, check_robot, [interval]).start()
