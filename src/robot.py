@@ -13,7 +13,7 @@ class Robot:
         print(cmd)
 
     def forward(self):
-        self.send_speed_command(400, 400)
+        self.send_speed_command(1000, 1000)
 
     def reverse(self):
         self.send_speed_command(-400, -400)

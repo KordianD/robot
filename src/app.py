@@ -2,26 +2,44 @@ from flask import Flask, render_template, request
 from flask_cors import CORS
 import robot as robot
 import argparse
+from threading import Timer
+import time
+
+global ts, robot
+
+
+def check_robot(interval):
+    Timer(interval, check_robot, [interval]).start()
+    global ts, robot
+    print(time.time() - ts)
+    if (time.time() - ts) > 0.200:
+        robot.stop()
+
 
 parser = argparse.ArgumentParser(description='Robot server.')
 parser.add_argument('--port', '-p', type=int,
                     help='Port to run flask server', required=False, default=5000)
 parser.add_argument('--mac', '-m', type=str,
                     help='Bluetooth mac address of robot', required=False, default="00:07:80:80:10:C9")
+
 args = parser.parse_args()
+robot = robot.Robot()
+robot.socket.connect((args.mac, 1))
+ts = time.time()
+check_robot(0.2)
+
 APP = Flask(__name__)
 CORS(APP)
-
-robot = robot.Robot()
 
 
 @APP.route('/control_robot')
 def control_robot():
+    global ts
+    ts = time.time()
     direction = request.args.get('direction', 0)
     mousedown = request.args.get('mousedown', 0)
     if mousedown == '1':
         print('button pressed:', direction)
-
         if direction == 'up':
             robot.forward()
         elif direction == 'left':
