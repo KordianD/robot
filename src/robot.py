@@ -1,5 +1,7 @@
 import socket
 from src.config import DEFAULT_VELOCITY
+from src.config import TIME_INTERVAL
+import time
 
 
 class Robot:
@@ -9,10 +11,12 @@ class Robot:
             socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 
         self.socket.connect((mac, 1))
+        self.last_update = time.time()
 
     def send_speed_command(self, left, right):
         cmd = '[={},{}]'.format(left, right)
         self.socket.send(bytes(cmd, 'UTF-8'))
+        self.last_update = time.time()
         print(cmd)
 
     def forward(self):
@@ -29,3 +33,6 @@ class Robot:
 
     def stop(self):
         self.send_speed_command(0, 0)
+
+    def is_time_exceeded(self):
+        return (time.time() - self.last_update) > TIME_INTERVAL

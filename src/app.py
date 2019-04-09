@@ -20,6 +20,10 @@ def check_robot(interval):
     global ts, robot
     print(time.time() - ts)
 
+    for robot in ROBOTS:
+        if robot.is_time_exceeded():
+            robot.stop()
+
     if time.time() - ts > interval:
         robot.stop()
 
