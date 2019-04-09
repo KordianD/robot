@@ -63,16 +63,5 @@ def control_robot():
         robot.stop()
     return "nothing"
 
-
-@APP.route("/test")
-def test():
-    return render_template('index_test.html')
-
-
-@APP.route("/")
-def index():
-    return render_template('index.html')
-
-
 if __name__ == "__main__":
     APP.run(host='0.0.0.0', port=args.port)
