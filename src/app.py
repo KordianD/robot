@@ -1,18 +1,18 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import robot as robot
 import argparse
 from threading import Timer
 import time
-from src.config import TIME_INTERVAL
-from src.mac_addresses import MAC_ADDRESSES
+from config import TIME_INTERVAL
+from mac_addresses import MAC_ADDRESSES
 
 global ts, robot
 
 # TODO: wiele robotów, losowanie numerka, kolor robota, wywalić serwer jak coś nie działa
 
-ROBOTS = []
 global ROBOTS
+ROBOTS = []
 
 
 def check_robot(interval):
@@ -44,6 +44,7 @@ CORS(APP)
 
 
 @APP.route('/control_robot')
+@cross_origin()
 def control_robot():
     global ts
     ts = time.time()
@@ -61,7 +62,8 @@ def control_robot():
             robot.reverse()
     else:
         robot.stop()
-    return "nothing"
+    return jsonify(color=robot.color)
+
 
 if __name__ == "__main__":
     APP.run(host='0.0.0.0', port=args.port)

@@ -1,6 +1,6 @@
 import socket
-from src.config import DEFAULT_VELOCITY
-from src.config import TIME_INTERVAL
+from config import DEFAULT_VELOCITY
+from config import TIME_INTERVAL
 import time
 
 
