@@ -5,11 +5,14 @@ import argparse
 from threading import Timer
 import time
 from src.config import TIME_INTERVAL
+from src.mac_addresses import MAC_ADDRESSES
 
 global ts, robot
 
-
 # TODO: wiele robotów, losowanie numerka, kolor robota, wywalić serwer jak coś nie działa
+
+ROBOTS = []
+global ROBOTS
 
 
 def check_robot(interval):
@@ -21,15 +24,14 @@ def check_robot(interval):
         robot.stop()
 
 
-parser = argparse.ArgumentParser(description='Robot server.')
+parser = argparse.ArgumentParser(description='Robot server')
 parser.add_argument('--port', '-p', type=int,
                     help='Port to run flask server', required=False, default=5000)
-parser.add_argument('--mac', '-m', type=str,
-                    help='Bluetooth mac address of robot', required=False, default="00:07:80:80:10:C9")
 
 args = parser.parse_args()
-robot = robot.Robot()
-robot.socket.connect((args.mac, 1))
+
+robot = robot.Robot(MAC_ADDRESSES[0])
+
 ts = time.time()
 check_robot(TIME_INTERVAL)
 

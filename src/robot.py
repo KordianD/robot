@@ -4,9 +4,11 @@ from src.config import DEFAULT_VELOCITY
 
 class Robot:
 
-    def __init__(self):
+    def __init__(self, mac: str):
         self.socket = socket.socket(
             socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+
+        self.socket.connect((mac, 1))
 
     def send_speed_command(self, left, right):
         cmd = '[={},{}]'.format(left, right)
