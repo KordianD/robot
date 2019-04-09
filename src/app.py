@@ -4,16 +4,20 @@ import robot as robot
 import argparse
 from threading import Timer
 import time
+from src.config import TIME_INTERVAL
 
 global ts, robot
 
-#TODO: wiele robotów, losowanie numerka, kolor robota, wywalić serwer jak coś nie działa
+
+# TODO: wiele robotów, losowanie numerka, kolor robota, wywalić serwer jak coś nie działa
+
 
 def check_robot(interval):
     Timer(interval, check_robot, [interval]).start()
     global ts, robot
     print(time.time() - ts)
-    if (time.time() - ts) > 0.200:
+
+    if time.time() - ts > interval:
         robot.stop()
 
 
@@ -27,7 +31,7 @@ args = parser.parse_args()
 robot = robot.Robot()
 robot.socket.connect((args.mac, 1))
 ts = time.time()
-check_robot(0.2)
+check_robot(TIME_INTERVAL)
 
 APP = Flask(__name__)
 CORS(APP)

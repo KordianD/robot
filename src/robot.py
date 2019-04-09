@@ -1,4 +1,5 @@
 import socket
+from src.config import DEFAULT_VELOCITY
 
 
 class Robot:
@@ -13,16 +14,16 @@ class Robot:
         print(cmd)
 
     def forward(self):
-        self.send_speed_command(1000, 1000)
+        self.send_speed_command(DEFAULT_VELOCITY, DEFAULT_VELOCITY)
 
     def reverse(self):
-        self.send_speed_command(-400, -400)
+        self.send_speed_command(-DEFAULT_VELOCITY, -DEFAULT_VELOCITY)
 
     def left(self):
-        self.send_speed_command(0, 100)
+        self.send_speed_command(0, DEFAULT_VELOCITY)
 
     def right(self):
-        self.send_speed_command(100, 0)
+        self.send_speed_command(DEFAULT_VELOCITY, 0)
 
     def stop(self):
         self.send_speed_command(0, 0)
