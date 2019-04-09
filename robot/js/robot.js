@@ -61,6 +61,9 @@ setInterval( function() {
         direction: direction_now,
         mousedown: mousedown_now,
         user_id: user_id_gen
+    },
+    function( data ) {
+    	document.body.style.backgroundColor = data.color; 
     });
 }, 100)
 
