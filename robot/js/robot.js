@@ -1,6 +1,7 @@
 var age, nick, group, percentage, port, time
 port = 5000;
 time = 10;
+user_id_gen = Math.ceil(Math.random() * 1e8);
 
 function endFun() {
     var xhr = new XMLHttpRequest();
@@ -58,7 +59,8 @@ $(function() {
 setInterval( function() {
     $.getJSON('http://0.0.0.0:' + port + '/control_robot', {
         direction: direction_now,
-        mousedown: mousedown_now
+        mousedown: mousedown_now,
+        user_id: user_id_gen
     });
 }, 100)
 
