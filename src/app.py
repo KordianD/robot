@@ -34,7 +34,7 @@ parser.add_argument('--port', '-p', type=int,
 
 args = parser.parse_args()
 
-robot = robot.Robot(MAC_ADDRESSES[0])
+robot = robot.Robot(MAC_ADDRESSES[0][0], MAC_ADDRESSES[0][1])
 
 ts = time.time()
 check_robot(TIME_INTERVAL)
