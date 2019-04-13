@@ -14,6 +14,7 @@ To install everything what is needed, run following command in the main director
 
 # How to run
 ## Run the robot control server:
+Remember to check if ports for both servers are open.
 Run commands:
 
     cd src
