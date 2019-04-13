@@ -13,7 +13,7 @@ class Robot:
         self.socket.connect((mac, 1))
         self.last_update = time.time()
         self.color = color
-        self.new_user_time = time.time()
+        self.user_time = time.time()
         self.user_age = 15
         self.user_id = 0
 
@@ -41,8 +41,8 @@ class Robot:
     def is_time_exceeded(self):
         return (time.time() - self.last_update) > TIME_INTERVAL
 
-    def robot_age(self):
-        return (time.time() - self.new_user_time)
+    def age(self):
+        return (time.time() - self.user_time)
 
     def velocity(self):
         if user_age < 10:

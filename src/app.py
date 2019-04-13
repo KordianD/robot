@@ -24,7 +24,9 @@ def check_robot(interval):
         if robot.is_time_exceeded():
             robot.stop()
 
+
 def new_user()
+
 
 parser = argparse.ArgumentParser(description='Robot server')
 parser.add_argument('--port', '-p', type=int,
@@ -32,11 +34,12 @@ parser.add_argument('--port', '-p', type=int,
 
 args = parser.parse_args()
 
-for i, (mac, color) in enumerate(MAC_ADDRESSES)
+for i, (mac, color) in enumerate(MAC_ADDRESSES):
     ROBOTS[i] = robot.Robot(mac, color)
 
 ts = time.time()
 check_robot(TIME_INTERVAL)
+old_id = 0
 
 APP = Flask(__name__)
 CORS(APP)
@@ -64,9 +67,16 @@ def control_robot():
                 else:
                     robot.reverse()
             else:
-                robot.stop()        
-            return jsonify(color=robot.color)
+                robot.stop()
+            return jsonify(color=robot.color, endgame=0)
+        elif user_id == old_id:
+            return jsonify(color=robot.color, endgame=1)
     # if above didn't return, new user:
+    oldest_robot = min(ROBOTS, key=lambda x: x.age())
+    old_id = oldest_robot.user_id
+    oldest_robot.user_id = user_id
+    return jsonify(color=robot.color, endgame=0)
+
 
 if __name__ == "__main__":
     APP.run(host='0.0.0.0', port=args.port)
