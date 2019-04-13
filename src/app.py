@@ -18,7 +18,7 @@ ROBOTS = []
 def check_robot(interval):
     Timer(interval, check_robot, [interval]).start()
     global ts, ROBOTS
-    print(time.time() - ts)
+    # print(time.time() - ts)
 
     for robot in ROBOTS:
         if robot.is_time_exceeded():
@@ -43,13 +43,12 @@ CORS(APP)
 
 
 @APP.route('/control_robot')
-@cross_origin()
 def control_robot():
-    global ts
+    global ts, old_id
     ts = time.time()
     direction = request.args.get('direction', 0)
     mousedown = request.args.get('mousedown', 0)
-    user_age = request.args.get('user_age', 0)
+    user_age = int(request.args.get('user_age', 0))
     user_id = request.args.get('user_id', 0)
     for robot in ROBOTS:
         if user_id == robot.user_id:
@@ -69,9 +68,12 @@ def control_robot():
         elif user_id == old_id:
             return jsonify(color=robot.color, endgame=1)
     # if above didn't return, new user:
-    oldest_robot = min(ROBOTS, key=lambda x: x.age())
+    oldest_robot = max(ROBOTS, key=lambda x: x.age())
     old_id = oldest_robot.user_id
     oldest_robot.user_id = user_id
+    oldest_robot.user_age = user_age
+    print("new user: {}, {}, assigned {}".format(
+        user_id, user_age, robot.color))
     return jsonify(color=robot.color, endgame=0)
 
 

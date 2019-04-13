@@ -2,6 +2,7 @@ import socket
 from config import DEFAULT_VELOCITY
 from config import TIME_INTERVAL
 import time
+import math
 
 
 class Robot:
@@ -45,9 +46,9 @@ class Robot:
         return (time.time() - self.user_time)
 
     def velocity(self):
-        if user_age < 10:
+        if self.user_age < 10:
             return math.ceil(DEFAULT_VELOCITY/2)
-        elif user_age > 20:
+        elif self.user_age > 20:
             return DEFAULT_VELOCITY
         else:
-            return math.ceil(user_age / 20 * DEFAULT_VELOCITY)
+            return math.ceil(self.user_age / 20 * DEFAULT_VELOCITY)
