@@ -13,8 +13,9 @@ class Robot:
         self.socket.connect((mac, 1))
         self.last_update = time.time()
         self.color = color
-        self.new_player_time = time.time()
-        self.player_age = 15
+        self.new_user_time = time.time()
+        self.user_age = 15
+        self.user_id = 0
 
     def send_speed_command(self, left, right):
         cmd = '[={},{}]'.format(left, right)
@@ -41,12 +42,12 @@ class Robot:
         return (time.time() - self.last_update) > TIME_INTERVAL
 
     def robot_age(self):
-        return (time.time() - self.new_player_time)
+        return (time.time() - self.new_user_time)
 
     def velocity(self):
-        if player_age < 10:
+        if user_age < 10:
             return math.ceil(DEFAULT_VELOCITY/2)
-        elif player_age > 20:
+        elif user_age > 20:
             return DEFAULT_VELOCITY
         else
-        return math.ceil(player_age / 20 * DEFAULT_VELOCITY)
+        return math.ceil(user_age / 20 * DEFAULT_VELOCITY)

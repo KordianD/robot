@@ -17,16 +17,14 @@ ROBOTS = []
 
 def check_robot(interval):
     Timer(interval, check_robot, [interval]).start()
-    global ts, robot
+    global ts, ROBOTS
     print(time.time() - ts)
 
     for robot in ROBOTS:
         if robot.is_time_exceeded():
             robot.stop()
 
-    if time.time() - ts > interval:
-        robot.stop()
-
+def new_user()
 
 parser = argparse.ArgumentParser(description='Robot server')
 parser.add_argument('--port', '-p', type=int,
@@ -34,7 +32,8 @@ parser.add_argument('--port', '-p', type=int,
 
 args = parser.parse_args()
 
-robot = robot.Robot(MAC_ADDRESSES[0][0], MAC_ADDRESSES[0][1])
+for i, (mac, color) in enumerate(MAC_ADDRESSES)
+    ROBOTS[i] = robot.Robot(mac, color)
 
 ts = time.time()
 check_robot(TIME_INTERVAL)
@@ -50,20 +49,24 @@ def control_robot():
     ts = time.time()
     direction = request.args.get('direction', 0)
     mousedown = request.args.get('mousedown', 0)
-    if mousedown == '1':
-        print('button pressed:', direction)
-        if direction == 'up':
-            robot.forward()
-        elif direction == 'left':
-            robot.left()
-        elif direction == 'right':
-            robot.right()
-        else:
-            robot.reverse()
-    else:
-        robot.stop()
-    return jsonify(color=robot.color)
-
+    user_age = request.args.get('user_age', 0)
+    user_id = request.args.get('user_id', 0)
+    for robot in ROBOTS:
+        if user_id == robot.user_id:
+            if mousedown == '1':
+                print('button pressed:', direction)
+                if direction == 'up':
+                    robot.forward()
+                elif direction == 'left':
+                    robot.left()
+                elif direction == 'right':
+                    robot.right()
+                else:
+                    robot.reverse()
+            else:
+                robot.stop()        
+            return jsonify(color=robot.color)
+    # if above didn't return, new user:
 
 if __name__ == "__main__":
     APP.run(host='0.0.0.0', port=args.port)

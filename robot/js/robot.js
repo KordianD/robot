@@ -60,7 +60,8 @@ setInterval( function() {
     $.getJSON('http://0.0.0.0:' + port + '/control_robot', {
         direction: direction_now,
         mousedown: mousedown_now,
-        user_id: user_id_gen
+        user_id: user_id_gen,
+        user_age: age
     },
     function( data ) {
     	document.body.style.backgroundColor = data.color; 
