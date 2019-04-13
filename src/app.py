@@ -72,6 +72,7 @@ def control_robot():
     old_id = oldest_robot.user_id
     oldest_robot.user_id = user_id
     oldest_robot.user_age = user_age
+    oldest_robot.user_time = time.time()
     print("new user: {}, {}, assigned {}".format(
         user_id, user_age, robot.color))
     return jsonify(color=robot.color, endgame=0)

@@ -57,14 +57,14 @@ $(function() {
 });
 
 setInterval( function() {
-    $.getJSON('http://0.0.0.0:' + port + '/control_robot', {
+    $.getJSON("http://" + ip + ":" + port + '/control_robot', {
         direction: direction_now,
         mousedown: mousedown_now,
         user_id: user_id_gen,
         user_age: age
     },
     function( data ) {
-    	document.body.style.backgroundColor = data.color;
+        document.body.style.backgroundColor = data.color;
         if (data.endgame == '1') {
             endFun();
         }
