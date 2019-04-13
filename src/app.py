@@ -25,9 +25,6 @@ def check_robot(interval):
             robot.stop()
 
 
-def new_user()
-
-
 parser = argparse.ArgumentParser(description='Robot server')
 parser.add_argument('--port', '-p', type=int,
                     help='Port to run flask server', required=False, default=5000)
@@ -35,7 +32,7 @@ parser.add_argument('--port', '-p', type=int,
 args = parser.parse_args()
 
 for i, (mac, color) in enumerate(MAC_ADDRESSES):
-    ROBOTS[i] = robot.Robot(mac, color)
+    ROBOTS.append(robot.Robot(mac, color))
 
 ts = time.time()
 check_robot(TIME_INTERVAL)

@@ -64,7 +64,10 @@ setInterval( function() {
         user_age: age
     },
     function( data ) {
-    	document.body.style.backgroundColor = data.color; 
+    	document.body.style.backgroundColor = data.color;
+        if (data.endgame == '1') {
+            endFun();
+        }
     });
 }, 100)
 
