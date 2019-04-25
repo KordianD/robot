@@ -11,7 +11,7 @@ class Robot:
         self.socket = socket.socket(
             socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 
-        #self.socket.connect((mac, 1))
+        self.socket.connect((mac, 1))
         self.last_update = time.time()
         self.color = color
         self.user_time = time.time()
@@ -20,7 +20,7 @@ class Robot:
 
     def send_speed_command(self, left, right):
         cmd = '[={},{}]'.format(left, right)
-        #self.socket.send(bytes(cmd, 'UTF-8'))
+        self.socket.send(bytes(cmd, 'UTF-8'))
         self.last_update = time.time()
         print(cmd)
 

@@ -1,2 +1,2 @@
 MAC_ADDRESSES = [('00:07:80:80:10:C9', "red"),
-                 ('FF:FF:FF:FF:FF:FF', "blue")]
+                 ('00:07:80:80:0C:B7', "black")]
