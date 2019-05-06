@@ -14,7 +14,9 @@ To install everything what is needed, run following command in the main director
 
 # How to run
 ## Run the robot control server:
-Remember to check if ports for both servers are open.
+Connect the robots to PC bluetooth.  
+Add the robot Bluetooth MAC addresses to `mac_addresses.py`  
+Remember to check if ports for both servers are open.  
 Run commands:
 
     cd src
