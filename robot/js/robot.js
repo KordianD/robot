@@ -1,7 +1,9 @@
 var age, nick, group, percentage, port, time
 port = 5000;
 time = 10;
+percentage = 1;
 user_id_gen = Math.ceil(Math.random() * 1e8);
+var timestamp = Date.now();
 
 function endFun() {
     var xhr = new XMLHttpRequest();
@@ -34,6 +36,7 @@ xhr.onreadystatechange = function() {
             else if(parameter.name == 'time')
                 time = parameter.value;
         });
+        console.log(port);
     }
 }
 xhr.send(null);
@@ -57,6 +60,9 @@ $(function() {
 });
 
 setInterval( function() {
+    if(Date.now() - timestamp > (time*1000)) {
+        endFun();
+    }
     $.getJSON("http://" + ip + ":" + port + '/control_robot', {
         direction: direction_now,
         mousedown: mousedown_now,

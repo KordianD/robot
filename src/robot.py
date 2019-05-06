@@ -10,7 +10,7 @@ class Robot:
     def __init__(self, mac: str, color: str):
         self.socket = socket.socket(
             socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
-
+        print("Input 1234 code in system bluetooth window")
         self.socket.connect((mac, 1))
         self.last_update = time.time()
         self.color = color
