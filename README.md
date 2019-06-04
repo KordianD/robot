@@ -14,19 +14,19 @@ To install everything what is needed, run following command in the main director
 
 ## Linux
 Connect the robots to PC using bluetooth.  
-Add the robot Bluetooth MAC addresses to `mac_addresses.py`
+Add the robot Bluetooth MAC addresses to `mac_addresses.py`.  
 Remember to check if ports for both servers are open.  
-Run commands:
+Run commands:  
 
     cd src
 
     python app.py
 
 ## Windows
-Create COM ports for each robot
-Add the robot COM ports addresses to `mac_addresses.py`
+Create COM ports for each robot (in bluetooth settings).  
+Add the robot COM ports addresses to `mac_addresses.py`.  
 Remember to check if ports for both servers are open.  
-Run commands:
+Run commands:  
 
     cd src
 
