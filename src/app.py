@@ -31,8 +31,11 @@ parser.add_argument('--port', '-p', type=int,
 
 args = parser.parse_args()
 
-for i, (mac, color) in enumerate(MAC_ADDRESSES):
-    ROBOTS.append(robot.Robot(mac, color))
+for i, (mac, color, com) in enumerate(MAC_ADDRESSES):
+    try:
+        ROBOTS.append(robot.Robot(mac, color, com))
+    except:
+        print(f"Couldn't add {color} robot")
 
 ts = time.time()
 check_robot(TIME_INTERVAL)

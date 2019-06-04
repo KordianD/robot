@@ -1,17 +1,22 @@
 import socket
+import serial
 from config import DEFAULT_VELOCITY
 from config import TIME_INTERVAL
 import time
 import math
+import os
 
 
 class Robot:
 
-    def __init__(self, mac: str, color: str):
-        self.socket = socket.socket(
-            socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
-        print("Input 1234 code in system bluetooth window")
-        self.socket.connect((mac, 1))
+    def __init__(self, mac: str, color: str, com: str):
+        if os.name == 'posix':
+            self.socket = socket.socket(
+                socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+            print("Input 1234 code in system bluetooth window")
+            self.socket.connect((mac, 1))
+        else:
+            self.serial = serial.Serial(com)
         self.last_update = time.time()
         self.color = color
         self.user_time = time.time()
@@ -20,7 +25,10 @@ class Robot:
 
     def send_speed_command(self, left, right):
         cmd = '[={},{}]'.format(left, right)
-        self.socket.send(bytes(cmd, 'UTF-8'))
+        if os.name == 'posix':
+            self.socket.send(bytes(cmd, 'UTF-8'))
+        else:
+            self.serial.write(bytes(cmd, 'UTF-8'))
         self.last_update = time.time()
         print(cmd)
 
