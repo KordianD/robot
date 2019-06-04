@@ -10,12 +10,11 @@ To install everything what is needed, run following command in the main director
     cd robot
         
     pip install -r requirements.txt
-
-
 # How to run
-## Run the robot control server:
-Connect the robots to PC bluetooth.  
-Add the robot Bluetooth MAC addresses to `mac_addresses.py`  
+
+## Linux
+Connect the robots to PC using bluetooth.  
+Add the robot Bluetooth MAC addresses to `mac_addresses.py`
 Remember to check if ports for both servers are open.  
 Run commands:
 
@@ -23,16 +22,22 @@ Run commands:
 
     python app.py
 
-## Add robot task to infun server:
-Add "robot" folder to 
+## Windows
+Create COM ports for each robot
+Add the robot COM ports addresses to `mac_addresses.py`
+Remember to check if ports for both servers are open.  
+Run commands:
 
-    server/src/main/resources/tasks/
+    cd src
+
+    python app.py
 
     
 # General 
 
 This project uses `flask` as a web framework.
-The default port which is mapped is `5000`.
+The default port `5000`, you can change it using `--port N` command.
+In `config.py` you can change maximum robot speed.
 
 
 # Development
