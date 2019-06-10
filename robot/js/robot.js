@@ -59,9 +59,11 @@ $(function() {
     });
 });
 
-setInterval( function() {
+var intervalId = setInterval( function() {
     if(Date.now() - timestamp > (time*1000)) {
         endFun();
+        clearInterval(intervalId);
+        return;
     }
     $.getJSON("http://" + ip + ":" + port + '/control_robot', {
         direction: direction_now,
@@ -73,6 +75,7 @@ setInterval( function() {
         document.body.style.backgroundColor = data.color;
         if (data.endgame == '1') {
             endFun();
+            clearInterval(intervalId);
         }
     });
 }, 100)

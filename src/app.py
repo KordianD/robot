@@ -9,8 +9,6 @@ from mac_addresses import MAC_ADDRESSES
 
 global ts, robot
 
-# TODO: wiele robotów, losowanie numerka, kolor robota, wywalić serwer jak coś nie działa
-
 global ROBOTS
 ROBOTS = []
 
@@ -35,7 +33,7 @@ for i, (mac, color, com) in enumerate(MAC_ADDRESSES):
     try:
         ROBOTS.append(robot.Robot(mac, color, com))
     except:
-        print(f"Couldn't add {color} robot")
+        print(f"WARNING: Couldn't add {color} robot")
 
 ts = time.time()
 check_robot(TIME_INTERVAL)
